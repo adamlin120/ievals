@@ -11,8 +11,10 @@ from .evaluator import Evaluator
 class ChatGPT_Evaluator(Evaluator):
     def __init__(self, choices, k, api_key, model_name, switch_zh_hans=False):
         super(ChatGPT_Evaluator, self).__init__(choices, model_name, k)
-        openai.api_key = api_key
-        self.client = openai.OpenAI(api_key=api_key)
+        # Hack: if api_key is a URL, we assume it's the base URL
+        openai_api_key = api_key if not api_key.startswith("http") else ""
+        openai_api_base = api_key if api_key.startswith("http") else None
+        self.client = openai.OpenAI(api_key=openai_api_key, api_base=openai_api_base)
         self.converter = None
         if switch_zh_hans:
             self.converter = opencc.OpenCC("t2s.json")

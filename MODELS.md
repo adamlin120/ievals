@@ -53,6 +53,13 @@ ieval gpt-3.5-turbo-instruct --series openai_complete --api_key "<Your OpenAI pl
 ```
 
 
+## vLLM OpenAI Chat API
+
+To use a [VLLM model with an OpenAI-compatible API](https://docs.vllm.ai/en/latest/getting_started/quickstart.html#openai-compatible-server), you can run:
+
+```bash
+ieval <Your Model Name> --series openai_chat --api_key "<Your API Endpoint>"
+```
 
 ## Gemini Pro
 

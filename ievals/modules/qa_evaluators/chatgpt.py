@@ -14,7 +14,7 @@ class ChatGPT_Evaluator(Evaluator):
         # Hack: if api_key is a URL, we assume it's the base URL
         openai_api_key = api_key if not api_key.startswith("http") else ""
         openai_api_base = api_key if api_key.startswith("http") else None
-        self.client = openai.OpenAI(api_key=openai_api_key, api_base=openai_api_base)
+        self.client = openai.OpenAI(api_key=openai_api_key, base_url=openai_api_base)
         self.converter = None
         if switch_zh_hans:
             self.converter = opencc.OpenCC("t2s.json")
